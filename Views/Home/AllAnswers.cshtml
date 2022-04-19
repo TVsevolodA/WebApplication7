@@ -1,0 +1,29 @@
+﻿<style>
+    td {
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+@model IEnumerable<WebApplication7.Models.Questionnaire>
+
+
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Имя</td>
+        <td>E-mail</td>
+        <td>Контактный телефон</td>
+        <td>Ответ</td>
+    </tr>
+    @foreach (WebApplication7.Models.Questionnaire c in Model)
+    {
+        <tr>
+            <td>@c.id</td>
+            <td>@c.name</td>
+            <td>@c.email</td>
+            <td>@c.phone</td>
+            <td>@c.solution</td>
+        </tr>
+    }
+</table>

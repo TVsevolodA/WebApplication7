@@ -1,0 +1,42 @@
+﻿<style>
+
+    div {
+        margin-top: 20px;
+    }
+
+    input {
+        width: auto;
+        height: auto;
+        border-radius: 10px;
+        border: 0;
+        padding: 10px;
+    }
+</style>
+
+<h1>Информация о вечеринке</h1>
+
+@model WebApplication7.Models.Questionnaire
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.TextBoxFor(model => model.name, new { placeholder = "Имя" })
+        @Html.ValidationMessageFor(model => model.name)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.email, new { type = "email", placeholder = "E-mail" })
+        @Html.ValidationMessageFor(model => model.email)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.phone, new { type = "tel", placeholder = "Контактный телефон" })
+        @Html.ValidationMessageFor(model => model.phone)
+    </div>
+    <div>
+        @Html.RadioButtonFor(m => m.solution, "Приду", new { Checked = "checked" }) Приду
+    </div>
+    <div>
+        @Html.RadioButtonFor(m => m.solution, "Не смогу") Не смогу
+    </div>
+    <div><input type="submit" value="Ответить" /></div>
+    }

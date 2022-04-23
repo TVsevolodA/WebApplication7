@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using WebApplication7.Models;
@@ -33,8 +34,18 @@ namespace WebApplication7.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Questionnaires.Add(questionnaire);
-                db.SaveChanges();
+                Questionnaire questionnaire1 = db.Questionnaires.FirstOrDefault(x => x.name == questionnaire.name && x.email == questionnaire.email && x.phone == questionnaire.phone);
+                if (questionnaire1 != null)
+                {
+                    questionnaire1.solution = questionnaire.solution;
+                    db.Entry(questionnaire1).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Questionnaires.Add(questionnaire);
+                    db.SaveChanges();
+                }
                 return Redirect("~/Home/Gratitude");
             }
             return View(questionnaire);
